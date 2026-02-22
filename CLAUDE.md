@@ -91,3 +91,9 @@ syntakt_midi_controller.py  →  syntakt_controller/app.py::main()
 ## CI
 
 GitHub Actions runs on Python 3.11, 3.12, 3.13 with workflows for tests, coverage (codecov), CodeQL security scanning, and pre-commit validation. Pre-commit hooks: file hygiene, ruff lint+format, mypy strict.
+
+CI runners require system packages before pip install: `libasound2-dev libjack-jackd2-dev` (to compile `python-rtmidi` from source on Python 3.13, which has no pre-built wheel) and `libegl1` (required by PyQt6 at import time on headless Ubuntu).
+
+## mypy and PyQt6/mido
+
+`PyQt6` and `mido` are configured with `follow_imports = "skip"` and `ignore_missing_imports = true` in `pyproject.toml`. This tells mypy to treat all symbols from these packages as `Any` regardless of whether stubs are bundled (PyQt6 ≥6.10 ships inline stubs). Without this, mypy behaviour diverges across PyQt6 versions — older versions report `import-untyped`, newer ones expose real Qt type errors. The trade-off is that mypy does not type-check Qt widget code. Do not remove these overrides without also fixing all resulting Qt type errors in `main_window.py` and `app.py`.

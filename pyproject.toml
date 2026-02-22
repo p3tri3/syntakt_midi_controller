@@ -53,3 +53,13 @@ python_version = "3.11"
 strict = true
 warn_unused_configs = true
 exclude = ["specs/"]
+
+[[tool.mypy.overrides]]
+module = ["PyQt6", "PyQt6.*"]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = ["mido", "mido.*"]
+ignore_missing_imports = true
+follow_imports = "skip"

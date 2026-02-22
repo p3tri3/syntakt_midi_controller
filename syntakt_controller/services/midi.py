@@ -42,7 +42,7 @@ class MidoMidiService:
 
     def __init__(self) -> None:
         try:
-            import mido  # type: ignore[import-untyped]
+            import mido
         except ImportError as exc:  # pragma: no cover - integration path
             raise RuntimeError("mido is not installed") from exc
 

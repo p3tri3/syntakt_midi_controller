@@ -5,7 +5,7 @@ import logging
 import os
 import sys
 
-from PyQt6.QtWidgets import QApplication  # type: ignore[import-untyped]
+from PyQt6.QtWidgets import QApplication
 
 from syntakt_controller.controllers.main_controller import MainController
 from syntakt_controller.services.midi import MidiService, NullMidiService

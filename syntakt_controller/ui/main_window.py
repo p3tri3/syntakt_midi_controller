@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from PyQt6.QtCore import Qt  # type: ignore[import-untyped]
-from PyQt6.QtWidgets import (  # type: ignore[import-untyped]
+from PyQt6.QtCore import Qt
+from PyQt6.QtWidgets import (
     QCheckBox,
     QComboBox,
     QFormLayout,

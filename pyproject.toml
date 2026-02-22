@@ -63,3 +63,7 @@ follow_imports = "skip"
 module = ["mido", "mido.*"]
 ignore_missing_imports = true
 follow_imports = "skip"
+
+[[tool.mypy.overrides]]
+module = ["syntakt_controller.ui.main_window"]
+disallow_subclassing_any = false

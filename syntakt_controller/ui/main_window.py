@@ -28,7 +28,7 @@ from syntakt_controller.controller_models import (
 from syntakt_controller.controllers.main_controller import MainController
 
 
-class MainWindow(QMainWindow):  # type: ignore[misc]
+class MainWindow(QMainWindow):
     def __init__(self, controller: MainController) -> None:
         super().__init__()
         self._controller = controller
@@ -49,7 +49,8 @@ class MainWindow(QMainWindow):  # type: ignore[misc]
         vbox.addWidget(self._tabs)
         self.setCentralWidget(container)
 
-        self.statusBar().showMessage("Ready")
+        if sb := self.statusBar():
+            sb.showMessage("Ready")
 
     def _build_connection_bar(self) -> QWidget:
         bar = QFrame()
@@ -234,5 +235,6 @@ class MainWindow(QMainWindow):  # type: ignore[misc]
 
     def _on_controller_status(self, message: str, is_error: bool) -> None:
         color = "#b00020" if is_error else "#1f6f43"
-        self.statusBar().setStyleSheet(f"color: {color};")
-        self.statusBar().showMessage(message)
+        if sb := self.statusBar():
+            sb.setStyleSheet(f"color: {color};")
+            sb.showMessage(message)
